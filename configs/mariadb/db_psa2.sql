@@ -31,7 +31,7 @@ USE `db_psa2`;
 
 CREATE TABLE `servers_data` (
   `id` int(11) NOT NULL,
-  `fecha` datetime NOT NULL DEFAULT current_timestamp(),
+  `fecha` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `host` varchar(25) NOT NULL,
   `cpu` decimal(12,2) NOT NULL,
   `mem_total` decimal(12,2) NOT NULL,
@@ -45,6 +45,7 @@ CREATE TABLE `servers_data` (
   `data_rx` decimal(12,2) NOT NULL,
   `data_tx` decimal(12,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 --
 -- Indexes for dumped tables
