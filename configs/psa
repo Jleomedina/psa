@@ -83,29 +83,18 @@ menu_principal(){
     fi
   }
 
-  iniciar_grafana() {
-    validar -s grafana-server
+  iniciar_grafana(){
+    (validar -s grafana-server)
     if [ $? -eq 1 ]; then
-        echo "Activando y arrancando el servicio de Grafana..."
-
-        # Habilitar y arrancar el servicio
-        systemctl enable grafana-server >/dev/null 2>>"$log" || {
-            echo "Error al habilitar Grafana" >>"$log"
-            return 1
-        }
-
-        systemctl start grafana-server >/dev/null 2>>"$log" || {
-            echo "Error al iniciar Grafana" >>"$log"
-            return 1
-        }
-
-        touch "$flag"
-        barra_progreso "Iniciando grafana, por favor espere..."
-    else
-        echo "Grafana ya está activo."
+      systemctl enable grafana-server >/dev/null 2>$log \
+      && systemctl daemon-reload \
+      && systemctl start grafana-server >/dev/null 2>$log \
+      && touch $flag \
+      &
+      barra_progreso "Iniciando grafana, por favor espere..."
+      #proceso_finalizado "Instalacion de grafana completada"
     fi
-}
-
+  }
 #
 
 
@@ -253,28 +242,24 @@ menu_principal(){
   # VALIDAR DIRECTORIO, SERVICIO, BINARIO EN EL PATH
   # DEVUELVE 1 SI EXISTE, DEVUELVE 0 SI NO EXISTE
   #=========================================================
-  validar() {
+  validar(){
     case $1 in
-        # Verifica si un directorio existe (-d)
-        "-d") ls "$2" >/dev/null 2>&1 ;;
-        
-        # Verifica si un servicio está activo (-s)
-        "-s") systemctl is-active --quiet "$2" ;;
-        
-        # Verifica si un binario existe en el PATH (-b)
-        "-b") command -v "$2" >/dev/null 2>&1 ;;
-        
-        *) return 2 ;; # Código de error para opción inválida
+      #directorio -d
+      "-d") ls "$2" >/dev/null 2>&1 ;;
+      
+      #servicio -s
+      "-s") systemctl stop "$2" >/dev/null 2>&1 ;;
+
+      #binario en $PATH
+      "-b") command -v "$2" >/dev/null 2>&1 ;;
     esac
 
-    # Devuelve el estado de salida del comando
     if [ $? -eq 0 ]; then
-        return 0 # Éxito
+      exit 1
     else
-        return 1 # Falla
+      exit 0
     fi
-}
-
+  }
 #
 
 

@@ -60,7 +60,7 @@ menu_principal(){
       wget -q -O configs/grafana/gpg.key https://rpm.grafana.com/gpg.key \
       && rpm --import $configs/grafana/gpg.key \
       && cp $configs/grafana/grafana.repo /etc/yum.repos.d/ \
-      && dnf install -y grafana-enterprise >/dev/null 2>$log \
+      && dnf install -y grafana >/dev/null 2>$log \
       && firewall_port_manager -add 3000/tcp \
       && touch $flag \
       &
