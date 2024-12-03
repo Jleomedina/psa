@@ -9,8 +9,8 @@ menu_principal(){
   
   while true ; do
     respuesta=$(whiptail --title "$titulo" --menu "$texto" 20 80 6 \
-      "1" "Instalacion PSA"      \
-      "2" "Desinstalacion PSA"   \
+      "1" "Instalacion app PSA"      \
+      "2" "Desinstalacion app PSA"   \
       "3" "Salir"                \
       3>&1 1>&2 2>&3
     )
