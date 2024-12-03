@@ -3,14 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 15, 2024 at 02:53 PM
+-- Generation Time: Dec 2, 2024 at 05:12 PM
 -- Server version: 11.4.3-MariaDB
 -- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -40,12 +39,9 @@ CREATE TABLE `servers_data` (
   `disco_total` decimal(12,2) NOT NULL,
   `disco_libre` decimal(12,2) NOT NULL,
   `disco_usado` decimal(12,2) NOT NULL,
-  `usuarios_activos` int(11) NOT NULL,
-  `interfaz` varchar(25) NOT NULL,
   `data_rx` decimal(12,2) NOT NULL,
   `data_tx` decimal(12,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 
 --
 -- Indexes for dumped tables
@@ -71,3 +67,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
